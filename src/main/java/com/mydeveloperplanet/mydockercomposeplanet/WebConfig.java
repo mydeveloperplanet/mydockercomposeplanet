@@ -6,10 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
-import org.springframework.web.reactive.function.server.RequestPredicates;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.reactive.function.server.*;
 
 @Configuration
 @EnableWebFlux
@@ -24,7 +21,8 @@ public class WebConfig implements WebFluxConfigurer {
         return RouterFunctions
                 .route(RequestPredicates.GET("/shows/{id}/events"), showEventHandler::events)
                 .andRoute(RequestPredicates.GET("/shows/{id}"), showHandler::byId)
-                .andRoute(RequestPredicates.GET("/shows"), showHandler::all);
+                .andRoute(RequestPredicates.GET("/shows"), showHandler::all)
+                .andRoute(RequestPredicates.POST("/shows"), showHandler::save);
     }
 
 }

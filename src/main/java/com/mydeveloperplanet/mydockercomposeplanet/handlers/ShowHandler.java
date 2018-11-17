@@ -30,4 +30,9 @@ public class ShowHandler {
         Flux<Show> shows = this.showRepository.findAll();
         return ServerResponse.ok().body(shows, Show.class);
     }
+
+    public Mono<ServerResponse> save(ServerRequest serverRequest) {
+        Mono<Show> show = serverRequest.bodyToMono(Show.class);
+        return ServerResponse.ok().body(show.flatMap(this.showRepository::save), Show.class);
+    }
 }
