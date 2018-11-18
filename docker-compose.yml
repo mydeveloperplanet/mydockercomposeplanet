@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+    - 8080:8080
+    environment:
+    - MONGO_URI=mongodb://mymongodb/sample
+    depends_on:
+    - db
+    networks:
+    - mynetwork
+  db:
+    image: mongo:4.0.4
+    volumes:
+    - ./db:/data/db
+    networks:
+      mynetwork:
+        aliases:
+        - "mymongodb"
+networks:
+  mynetwork:
+    driver: bridge
