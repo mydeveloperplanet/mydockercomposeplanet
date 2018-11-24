@@ -6,7 +6,7 @@ services:
     ports:
     - 8080:8080
     environment:
-    - MONGO_URI=mongodb://mymongodb/sample
+    - MONGO_URI=mongodb://mymongodb/dockercompose
     depends_on:
     - db
     networks:

@@ -10,4 +10,5 @@ module com.mydeveloperplanet.mydockercomposeplanet {
     requires spring.web;
     requires spring.data.mongodb;
     requires spring.beans;
+    requires mongodb.driver.reactivestreams;
 }
