@@ -2,7 +2,11 @@ version: '3'
 
 services:
   app:
-    build: .
+    image: mydeveloperplanet/mydockercomposeplanet:${APP_IMAGE_VERSION}
+    build: 
+      context: .
+      args:
+        JAR_FILE: target/mydockercomposeplanet-${APP_BUILD_VERSION}.jar
     ports:
     - 8080:8080
     environment:
@@ -14,7 +18,7 @@ services:
   db:
     image: mongo:4.0.4
     volumes:
-    - ./db:/data/db
+    - mongodb:/data/db
     networks:
       mynetwork:
         aliases:
@@ -22,3 +26,5 @@ services:
 networks:
   mynetwork:
     driver: bridge
+volumes:
+  mongodb:
